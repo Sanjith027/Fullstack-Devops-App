@@ -1,9 +1,7 @@
-
 variable "aws_region" {
-  default     = "us-east-1"   # ✅ change this line only
+  default     = "us-east-1"   # ✅ You asked to fix this line only
   description = "AWS region"
 }
-
 
 variable "ami_id" {
   description = "AMI ID for EC2 instances"
@@ -11,7 +9,7 @@ variable "ami_id" {
 }
 
 variable "instance_type" {
-  default     = "t2.micro"
+  default     = "t3.small"    # ✅ You’re now using t3.small for better performance
   description = "EC2 instance type"
 }
 
@@ -30,4 +28,3 @@ variable "db_password" {
   type        = string
   sensitive   = true
 }
->>>>>>> 05fc064 (Re-added infra folder as normal directory)

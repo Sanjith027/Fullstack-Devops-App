@@ -1,28 +1,33 @@
 pipeline {
   agent any
+
   environment {
     DOCKER_BUILDKIT = 1
   }
+
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/YOUR_REPO/fullstack-devops-app.git'
+        git 'https://github.com/Sanjith027/Fullstack-Devops-App.git'
       }
     }
+
     stage('Build Docker Images') {
       steps {
         sh 'docker-compose build'
       }
     }
+
     stage('Run Containers') {
       steps {
         sh 'docker-compose up -d'
       }
     }
-    stage('Code Quality') {
-      steps {
-        sh 'docker run --rm -v $(pwd):/app sonarsource/sonar-scanner-cli'
-      }
+  }
+
+  post {
+    always {
+      sh 'docker-compose down'
     }
   }
 }
